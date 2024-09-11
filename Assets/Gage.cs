@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class Gage : MonoBehaviour
@@ -9,8 +10,11 @@ public class Gage : MonoBehaviour
     public Slider slider;
     private bool maxValue;
     private bool isClicked;
-    [SerializeField] float GageSpeed = 1.0f;
-    [SerializeField] float PerfectGage = 4.0f;
+    [SerializeField] float gageSpeedPulas = 0.05f;
+    [SerializeField] float gageSpeed = 1.0f;
+    [SerializeField] float perfectGage = 4.0f;
+    [SerializeField] Text _scoreText = default;
+    int _score = 0;
 
     void Start()
     {
@@ -19,15 +23,29 @@ public class Gage : MonoBehaviour
         isClicked = false;
     }
 
+
+    // Update is called once per frame
+    public void AddScore(int score)
+    {
+        _score += score;
+        _scoreText.text = _score.ToString("00");
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            isClicked = true;
-            if (PerfectGage < slider.value)
+
+            if (perfectGage < slider.value)
             {
-                Debug.Log("Å‚");
-                
+                gageSpeed = gageSpeed + gageSpeedPulas;
+                AddScore(1);
+
+            }
+            else
+            {
+                isClicked = true;
+
             }
         }
 
@@ -42,17 +60,18 @@ public class Gage : MonoBehaviour
             {
                 maxValue = false;
             }
-            
-            
+
+
 
             if (maxValue)
             {
-                slider.value -= GageSpeed;
+                slider.value -= gageSpeed;
             }
             else
             {
-                slider.value += GageSpeed;
+                slider.value += gageSpeed;
             }
         }
+
     }
 }
