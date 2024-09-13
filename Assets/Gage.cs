@@ -15,6 +15,7 @@ public class Gage : MonoBehaviour
     [SerializeField] float perfectGage = 4.0f;
     [SerializeField] Text _scoreText = default;
     int _score = 0;
+    [SerializeField] int m_life = 3;
 
     void Start()
     {
@@ -40,7 +41,12 @@ public class Gage : MonoBehaviour
             {
                 gageSpeed = gageSpeed + gageSpeedPulas;
                 AddScore(1);
-
+                m_life -= 1;
+                
+                if(m_life <= 0)
+                {
+                    Debug.Log("end");
+                }
             }
             else
             {
