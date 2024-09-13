@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
+    path: Assets/Enemy Character Appearance.unity
+    guid: d12b2eca1aef4954b88a029355a77414
+  - enabled: 1
+    path: Assets/GameScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/GameClear.unity
+    guid: 1d87b8d540347a242b5479119de33ad1
+  - enabled: 1
+    path: Assets/GameOver.unity
+    guid: 01c22c5d8ab936742b3e37faa6c0003c
   m_configObjects: {}

@@ -419,6 +419,7 @@ MonoBehaviour:
   perfectGage: 4
   _scoreText: {fileID: 1114830044}
   m_life: 10
+  sound: {fileID: 8300000, guid: 178d47e3d9b204b4cb06fcb2989ccd22, type: 3}
 --- !u!4 &257416691
 Transform:
   m_ObjectHideFlags: 0
