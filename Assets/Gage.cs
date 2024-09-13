@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -20,6 +21,7 @@ public class Gage : MonoBehaviour
     [SerializeField] int m_life = 3;
     [SerializeField] private AudioClip sound;
     private AudioSource audio;
+    private bool isStart;
 
     void Start()
     {
@@ -39,50 +41,63 @@ public class Gage : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1) && !isStart)
         {
-
-            if (perfectGage < slider.value)
-            {
-                gageSpeed = gageSpeed + gageSpeedPulas;
-                AddScore(1);
-                m_life -= 1;
-                audio.PlayOneShot(sound);
-
-                if (m_life <= 0)
-                {
-                    Debug.Log("end");
-                    SceneManager.LoadScene("GameClear"); 
-                }
-            }
-            else
-            {
-                isClicked = true;
-                SceneManager.LoadScene("GameOver");
-            }
+            isStart = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space) && isStart)
+        {
+            isStart = false;
         }
 
-        if (!isClicked)
+        if (isStart)
         {
-            if (slider.value == 5)
+
+            if (Input.GetMouseButtonDown(0))
             {
-                maxValue = true;
+
+                if (perfectGage < slider.value)
+                {
+                    gageSpeed = gageSpeed + gageSpeedPulas;
+                    AddScore(1);
+                    m_life -= 1;
+                    audio.PlayOneShot(sound);
+
+                    if (m_life <= 0)
+                    {
+                        Debug.Log("end");
+                        SceneManager.LoadScene("GameClear");
+                    }
+                }
+                else
+                {
+                    isClicked = true;
+                    SceneManager.LoadScene("GameOver");
+                }
             }
 
-            if (slider.value == 0)
+            if (!isClicked)
             {
-                maxValue = false;
-            }
+                if (slider.value == 5)
+                {
+                    maxValue = true;
+                }
+
+                if (slider.value == 0)
+                {
+                    maxValue = false;
+                }
 
 
 
-            if (maxValue)
-            {
-                slider.value -= gageSpeed;
-            }
-            else
-            {
-                slider.value += gageSpeed;
+                if (maxValue)
+                {
+                    slider.value -= gageSpeed;
+                }
+                else
+                {
+                    slider.value += gageSpeed;
+                }
             }
         }
     }
