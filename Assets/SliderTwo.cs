@@ -19,6 +19,8 @@ public class SliderTwo : MonoBehaviour
     [SerializeField] Text _scoreText = default;
     int _score = 0;
     private bool isStart;
+    int scoreTwo = 0;
+
     void Start()
     {
         slider.value = 0;
@@ -36,7 +38,7 @@ public class SliderTwo : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !isStart)
+        if (Input.GetKeyDown(KeyCode.Tab) && !isStart)
         {
             isStart = true;
         }
@@ -59,6 +61,8 @@ public class SliderTwo : MonoBehaviour
                 else
                 {
                     isClicked = true;
+                    scoreTwo = _score;
+                    ResultTwo();
                 }
             }
 
@@ -90,5 +94,10 @@ public class SliderTwo : MonoBehaviour
                 }
             }
         }
+    }
+    void ResultTwo()
+    {
+        scoreTwo = _score;
+        Debug.Log(scoreTwo);
     }
 }

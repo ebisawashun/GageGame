@@ -1,6 +1,9 @@
+using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Runtime.ConstrainedExecution;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -19,6 +22,9 @@ public class SliderOne : MonoBehaviour
     [SerializeField] Text _scoreText = default;
     int _score = 0;
     private bool isStart;
+    int scoreOne = 0;
+
+
     void Start()
     {
         slider.value = 0;
@@ -26,6 +32,11 @@ public class SliderOne : MonoBehaviour
         isClicked = false;
     }
 
+    //public void Score()
+    //{
+    //    scoreOne=scoreOne;
+    //    Debug.Log(scoreOne);
+    //}
 
     // Update is called once per frame
     public void AddScore(int score)
@@ -36,7 +47,7 @@ public class SliderOne : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !isStart)
+        if (Input.GetMouseButtonDown(1) && !isStart)
         {
             isStart = true;
         }
@@ -59,6 +70,8 @@ public class SliderOne : MonoBehaviour
                 else
                 {
                     isClicked = true;
+                    scoreOne = _score;
+                    Result();
                 }
             }
 
@@ -89,6 +102,10 @@ public class SliderOne : MonoBehaviour
                     gageSpeed = 0.035f;
                 }
             }
+        }
+        void Result()
+        {
+            scoreOne = _score;
         }
     }
 }
